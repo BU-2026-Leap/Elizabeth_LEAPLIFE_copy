@@ -18,11 +18,14 @@ unique_students = 0
 with open(input_filename) as f:
     reader = csv.DictReader(f)
     for row in reader:
-        print(row)
+        if row['exam_name'] == 'final':
+            average_final += int(row['score'])
+            unique_students += 1
 
-        # TODO: compute average final score
+    average_final /= unique_students
+    print(average_final)
+    print(unique_students)
 
-        # TODO: unique student count
 
 if os.path.exists(output_filename):
     os.remove(output_filename)
